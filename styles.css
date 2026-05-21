@@ -240,6 +240,16 @@ nav a {
   color: var(--muted);
 }
 
+.card-link {
+  display: inline-flex;
+  margin-top: 18px;
+  color: var(--blue);
+  font-weight: 800;
+  text-decoration-color: var(--pink);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
 .contact-section {
   background: var(--blue);
   color: var(--white);
