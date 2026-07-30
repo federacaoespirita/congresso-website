@@ -17,6 +17,7 @@ const saveData = navigator.connection?.saveData === true;
 
 if (film && canvas && context) {
   const frameCount = Number(film.dataset.frameCount) || 234;
+  const frameStart = Number(film.dataset.frameStart) || 0;
   const frameBlobs = new Array(frameCount);
   const fetchPromises = new Array(frameCount);
   const decodePromises = new Array(frameCount);
@@ -27,7 +28,7 @@ if (film && canvas && context) {
   let updateQueued = false;
 
   const frameSource = (index) =>
-    `imagens/intro-frames/frame-${String(index).padStart(3, "0")}.webp`;
+    `imagens/intro-frames/frame-${String(index + frameStart).padStart(3, "0")}.webp`;
 
   const updateLoadProgress = () => {
     const progress = `${Math.round((loadedCount / frameCount) * 100)}%`;
