@@ -688,8 +688,8 @@ button {
   font-family: var(--display);
   font-size: clamp(3.6rem, 7vw, 8rem);
   font-weight: 600;
-  letter-spacing: -0.055em;
-  line-height: 0.76;
+  letter-spacing: -0.03em;
+  line-height: 0.92;
 }
 
 .manifesto {
@@ -793,7 +793,7 @@ button {
 }
 
 .speaker {
-  grid-column: span 4;
+  grid-column: span 3;
 }
 
 .speaker--offset {
@@ -802,6 +802,7 @@ button {
 
 .speaker figure {
   position: relative;
+  aspect-ratio: 5 / 7;
   margin: 0;
   overflow: hidden;
   background: var(--blue);
@@ -817,9 +818,24 @@ button {
 
 .speaker figure img {
   width: 100%;
-  aspect-ratio: 4 / 5;
+  height: 100%;
   object-fit: cover;
   transition: transform 600ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.speaker--surprise figure {
+  display: grid;
+  aspect-ratio: 5 / 7;
+  place-items: center;
+  background: var(--blue);
+}
+
+.speaker--surprise figure strong {
+  color: var(--pink);
+  font-family: var(--display);
+  font-size: clamp(8rem, 15vw, 15rem);
+  font-weight: 400;
+  line-height: 0.6;
 }
 
 .speaker:hover figure img {
@@ -1435,8 +1451,30 @@ footer {
     font-size: 0.66rem;
   }
 
-  .speaker {
-    grid-column: span 6;
+  .speaker-list {
+    display: flex;
+    gap: 14px;
+    padding-right: var(--page-pad);
+    padding-bottom: 4px;
+    margin-right: calc(var(--page-pad) * -1);
+    overflow-x: auto;
+  }
+
+  .speaker,
+  .speaker--offset {
+    flex: 0 0 min(52vw, 300px);
+    padding-top: 0;
+  }
+
+  .speaker figure,
+  .speaker--surprise figure {
+    aspect-ratio: 4 / 5;
+  }
+
+  .speaker figure img {
+    height: 100%;
+    aspect-ratio: auto;
+    object-position: center 20%;
   }
 
   .history,
@@ -1745,41 +1783,10 @@ footer {
     font-size: clamp(3.2rem, 18vw, 5rem);
   }
 
-  .speaker-list {
-    display: flex;
-    gap: 14px;
-    padding-right: var(--page-pad);
-    padding-bottom: 4px;
-    margin-right: calc(var(--page-pad) * -1);
-    overflow-x: auto;
-    overscroll-behavior-inline: contain;
-    touch-action: pan-x pinch-zoom;
-    scroll-padding-left: 0;
-    scroll-snap-type: x proximity;
-    scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .speaker-list::-webkit-scrollbar {
-    display: none;
-  }
-
   .speaker,
   .speaker--offset {
     flex: 0 0 min(72vw, 300px);
     padding-top: 0;
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
-  }
-
-  .speaker figure {
-    aspect-ratio: 4 / 5;
-  }
-
-  .speaker figure img {
-    height: 100%;
-    aspect-ratio: auto;
-    object-position: center 20%;
   }
 
   .speaker__copy {
@@ -1792,14 +1799,6 @@ footer {
     padding-right: var(--page-pad);
     margin-right: calc(var(--page-pad) * -1);
     overflow-x: auto;
-    overscroll-behavior-inline: contain;
-    touch-action: pan-x pinch-zoom;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-  }
-
-  .gallery::-webkit-scrollbar {
-    display: none;
   }
 
   .gallery__item,
@@ -1809,8 +1808,6 @@ footer {
     flex: 0 0 82vw;
     height: 58vw;
     min-height: 240px;
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
   }
 
   .gallery__item span {
