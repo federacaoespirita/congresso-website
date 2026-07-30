@@ -1455,9 +1455,10 @@ footer {
     display: flex;
     gap: 14px;
     padding-right: var(--page-pad);
-    padding-bottom: 4px;
+    padding-bottom: 16px;
     margin-right: calc(var(--page-pad) * -1);
     overflow-x: auto;
+    overflow-y: hidden;
   }
 
   .speaker,
@@ -1799,6 +1800,7 @@ footer {
     padding-right: var(--page-pad);
     margin-right: calc(var(--page-pad) * -1);
     overflow-x: auto;
+    overflow-y: hidden;
   }
 
   .gallery__item,
