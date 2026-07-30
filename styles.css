@@ -1318,6 +1318,7 @@ footer {
 .footer__meta {
   display: flex;
   align-items: center;
+  justify-self: end;
   gap: 28px;
 }
 
@@ -1756,6 +1757,10 @@ footer {
 
   .footer__developer img {
     width: min(180px, 52vw);
+  }
+
+  .footer__meta {
+    justify-self: start;
   }
 }
 
