@@ -1753,13 +1753,16 @@ footer {
 
   .speaker-list {
     display: flex;
-    gap: 18px;
+    gap: 14px;
     padding-right: var(--page-pad);
+    padding-bottom: 4px;
     margin-right: calc(var(--page-pad) * -1);
     overflow-x: auto;
+    overscroll-behavior-inline: contain;
     scroll-padding-left: 0;
-    scroll-snap-type: x mandatory;
+    scroll-snap-type: x proximity;
     scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
   }
 
   .speaker-list::-webkit-scrollbar {
@@ -1768,9 +1771,24 @@ footer {
 
   .speaker,
   .speaker--offset {
-    flex: 0 0 min(82vw, 360px);
+    flex: 0 0 min(72vw, 300px);
     padding-top: 0;
     scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  .speaker figure {
+    aspect-ratio: 1 / 1;
+  }
+
+  .speaker figure img {
+    height: 100%;
+    aspect-ratio: auto;
+    object-position: center 20%;
+  }
+
+  .speaker__copy {
+    padding-top: 16px;
   }
 
   .gallery {
