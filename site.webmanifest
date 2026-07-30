@@ -1,0 +1,17 @@
+{
+  "name": "43º Congresso Espírita de Goiás",
+  "short_name": "Congresso FEEGO",
+  "lang": "pt-BR",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#00223e",
+  "theme_color": "#00223e",
+  "icons": [
+    {
+      "src": "/imagens/favicon-feego.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

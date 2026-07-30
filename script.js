@@ -338,20 +338,40 @@ if (film && canvas && context) {
 }
 
 const readingProgress = document.querySelector(".reading-progress span");
+let readingScrollRange = 1;
+let readingProgressQueued = false;
 
 const updateReadingProgress = () => {
+  readingProgressQueued = false;
+
   if (!readingProgress) {
     return;
   }
 
-  const scrollRange = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
-  const progress = clamp(window.scrollY / scrollRange);
+  const progress = clamp(window.scrollY / readingScrollRange);
   readingProgress.style.transform = `scaleX(${progress})`;
 };
 
-window.addEventListener("scroll", updateReadingProgress, { passive: true });
-window.addEventListener("resize", updateReadingProgress);
-updateReadingProgress();
+const requestReadingProgressUpdate = () => {
+  if (!readingProgressQueued) {
+    readingProgressQueued = true;
+    requestAnimationFrame(updateReadingProgress);
+  }
+};
+
+const refreshReadingScrollRange = () => {
+  readingScrollRange = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+  requestReadingProgressUpdate();
+};
+
+window.addEventListener("scroll", requestReadingProgressUpdate, { passive: true });
+window.addEventListener("resize", refreshReadingScrollRange);
+
+if ("ResizeObserver" in window) {
+  new ResizeObserver(refreshReadingScrollRange).observe(document.body);
+}
+
+refreshReadingScrollRange();
 
 const menuToggle = document.querySelector(".menu-toggle");
 const mainMenu = document.querySelector(".main-menu");

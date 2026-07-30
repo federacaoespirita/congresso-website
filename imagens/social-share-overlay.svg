@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="left-shadow" x1="0" x2="1">
+      <stop offset="0" stop-color="#00192d" stop-opacity="0.34"/>
+      <stop offset="1" stop-color="#00192d" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="730" height="630" fill="url(#left-shadow)"/>
+  <rect x="70" y="191" width="44" height="4" rx="2" fill="#f5017a"/>
+  <text x="130" y="197" fill="#f5017a" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" letter-spacing="3">FEEGO APRESENTA · 2027</text>
+  <text x="70" y="280" fill="#ffffff" font-family="Helvetica Neue, Arial, sans-serif" font-size="60" font-weight="700">43º Congresso</text>
+  <text x="70" y="347" fill="#ffffff" font-family="Helvetica Neue, Arial, sans-serif" font-size="60" font-weight="700">Espírita de Goiás</text>
+  <text x="70" y="408" fill="#dbe7ee" font-family="Georgia, serif" font-size="35" font-style="italic">O Cristo vive em mim</text>
+  <line x1="70" y1="529" x2="516" y2="529" stroke="#ffffff" stroke-opacity="0.32"/>
+  <text x="70" y="568" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="22" letter-spacing="0.7">congresso.feego.org.br</text>
+</svg>

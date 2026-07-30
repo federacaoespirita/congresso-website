@@ -1267,9 +1267,9 @@ button {
 }
 
 footer {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: flex-end;
-  justify-content: space-between;
   gap: 48px;
   min-height: 290px;
   padding: 64px var(--page-pad);
@@ -1287,6 +1287,32 @@ footer {
   margin: 24px 0 0;
   color: rgba(255, 255, 255, 0.58);
   font-size: 0.75rem;
+}
+
+.footer__developer {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  color: rgba(255, 255, 255, 0.62);
+  text-decoration: none;
+  transition: opacity 180ms ease;
+}
+
+.footer__developer:hover {
+  opacity: 0.72;
+}
+
+.footer__developer span {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.footer__developer img {
+  width: min(180px, 18vw);
+  height: auto;
+  filter: brightness(0) invert(1);
 }
 
 .footer__meta {
@@ -1719,8 +1745,17 @@ footer {
   }
 
   footer {
+    display: flex;
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .footer__developer {
+    justify-items: start;
+  }
+
+  .footer__developer img {
+    width: min(180px, 52vw);
   }
 }
 

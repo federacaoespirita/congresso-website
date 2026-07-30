@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://congresso.feego.org.br/sitemap.xml
