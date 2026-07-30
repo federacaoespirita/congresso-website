@@ -270,21 +270,14 @@ button {
 }
 
 .film__title {
-  width: fit-content;
-  max-width: 100%;
-  padding: 0.08em 0.18em 0.13em;
   margin: 12px 0 0;
-  color: var(--blue);
+  color: #f1f1f1;
   font-family: var(--display);
   font-size: clamp(3.1rem, 6.2vw, 7.5rem);
   font-weight: 600;
   letter-spacing: -0.045em;
   line-height: 0.78;
-  background: rgba(241, 241, 241, 0.88);
-  border-left: clamp(4px, 0.45vw, 8px) solid var(--pink);
-  box-shadow: 0 16px 40px rgba(0, 34, 62, 0.14);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  filter: drop-shadow(0 1px 1px var(--blue));
 }
 
 .film__cue {
