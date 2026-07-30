@@ -352,6 +352,42 @@ window.addEventListener("scroll", updateReadingProgress, { passive: true });
 window.addEventListener("resize", updateReadingProgress);
 updateReadingProgress();
 
+const horizontalRails = document.querySelectorAll(".speaker-list, .gallery");
+
+horizontalRails.forEach((rail) => {
+  let wheelAxis = null;
+  let wheelAxisTimer;
+
+  rail.addEventListener(
+    "wheel",
+    (event) => {
+      if (event.ctrlKey) {
+        return;
+      }
+
+      const deltaX = Math.abs(event.deltaX);
+      const deltaY = Math.abs(event.deltaY);
+
+      if (!wheelAxis && (deltaX > 0 || deltaY > 0)) {
+        wheelAxis = event.shiftKey || deltaX >= deltaY ? "x" : "y";
+      }
+
+      window.clearTimeout(wheelAxisTimer);
+      wheelAxisTimer = window.setTimeout(() => {
+        wheelAxis = null;
+      }, 180);
+
+      if (wheelAxis !== "x") {
+        return;
+      }
+
+      event.preventDefault();
+      rail.scrollLeft += event.shiftKey && event.deltaX === 0 ? event.deltaY : event.deltaX;
+    },
+    { passive: false }
+  );
+});
+
 const menuToggle = document.querySelector(".menu-toggle");
 const mainMenu = document.querySelector(".main-menu");
 const menuLabel = menuToggle?.querySelector(".sr-only");
