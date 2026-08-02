@@ -1,3 +1,4 @@
 exclude:
   - branding
   - AGENTS.md
+  - "**/AGENTS.md"
