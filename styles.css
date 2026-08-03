@@ -636,24 +636,24 @@ button {
   line-height: 0.92;
 }
 
-.manifesto {
+.event-date {
   display: grid;
   grid-template-columns: minmax(280px, 0.78fr) minmax(0, 1.22fr);
   gap: clamp(64px, 11vw, 180px);
   background: var(--paper);
 }
 
-.manifesto .section-heading {
+.event-date__heading {
   position: sticky;
   top: 136px;
   align-self: start;
 }
 
-.manifesto__body {
+.event-date__content {
   padding-top: clamp(50px, 9vw, 130px);
 }
 
-.manifesto__statement {
+.event-date__lead {
   max-width: 760px;
   margin: 0;
   color: var(--blue);
@@ -664,47 +664,121 @@ button {
   line-height: 0.94;
 }
 
-.manifesto__body > p:not(.manifesto__statement) {
+.event-date__copy {
   max-width: 620px;
   margin: 42px 0 0;
   color: var(--muted);
   font-size: clamp(1rem, 1.5vw, 1.25rem);
 }
 
-.principles {
-  padding: 0;
-  margin: clamp(62px, 8vw, 110px) 0 0;
-  list-style: none;
-  border-top: 1px solid var(--line);
+.event-date__calendar {
+  position: relative;
+  max-width: 760px;
+  padding: clamp(26px, 4.5vw, 52px);
+  margin-top: clamp(52px, 7vw, 88px);
+  overflow: hidden;
+  background: var(--white);
+  box-shadow: 14px 14px 0 rgba(245, 1, 122, 0.9);
 }
 
-.principles li {
-  display: grid;
-  grid-template-columns: 74px 1fr;
-  gap: 22px;
-  padding: 28px 0;
+.event-date__calendar::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  content: "";
+  background: var(--pink);
+}
+
+.event-date__calendar-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 28px;
   border-bottom: 1px solid var(--line);
+  color: var(--blue);
 }
 
-.principles span {
-  color: var(--pink);
+.event-date__calendar-heading span,
+.event-date__days span,
+.event-date__note {
   font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
 }
 
-.principles h3 {
-  margin: 0;
+.event-date__calendar-heading strong {
+  font-family: var(--display);
+  font-size: 1.7rem;
+  font-weight: 600;
+  line-height: 0.8;
+}
+
+.event-date__days {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  padding: 0;
+  margin: 34px 0 0;
+  list-style: none;
+}
+
+.event-date__days li {
+  min-width: 0;
+  padding: 0 clamp(12px, 2vw, 28px);
+  border-left: 1px solid var(--line);
+}
+
+.event-date__days li:first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+
+.event-date__days li:last-child {
+  padding-right: 0;
+}
+
+.event-date__days span {
+  display: block;
+  color: var(--muted);
+  font-size: clamp(0.58rem, 1vw, 0.72rem);
+  letter-spacing: 0.08em;
+}
+
+.event-date__days strong {
+  display: block;
+  margin-top: 12px;
   color: var(--blue);
   font-family: var(--display);
-  font-size: clamp(2rem, 3vw, 3.2rem);
+  font-size: clamp(3.8rem, 8vw, 7.5rem);
   font-weight: 600;
-  line-height: 0.9;
+  letter-spacing: -0.06em;
+  line-height: 0.7;
 }
 
-.principles p {
-  margin: 10px 0 0;
+.button--calendar {
+  margin-top: clamp(52px, 7vw, 80px);
+  color: var(--white);
+  background: var(--pink);
+}
+
+.button--calendar:hover {
+  color: var(--white);
+  background: var(--blue);
+}
+
+.button--calendar svg {
+  width: 18px;
+  height: 18px;
+}
+
+.event-date__note {
+  margin: 18px 0 0;
   color: var(--muted);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: none;
 }
 
 .speakers {
@@ -1450,7 +1524,7 @@ footer {
   }
 
   .history,
-  .manifesto {
+  .event-date {
     gap: 64px;
   }
 
@@ -1616,17 +1690,17 @@ footer {
     border-bottom: 1px solid var(--line-light);
   }
 
-  .manifesto,
+  .event-date,
   .history,
   .contact {
     grid-template-columns: 1fr;
   }
 
-  .manifesto .section-heading {
+  .event-date__heading {
     position: static;
   }
 
-  .manifesto__body {
+  .event-date__content {
     padding-top: 0;
   }
 

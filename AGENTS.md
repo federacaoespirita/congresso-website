@@ -77,6 +77,7 @@ Default section order:
 ## User Preferences
 
 - GitHub Pages must exclude `AGENTS.md` files at the repository root and in all nested directories from the published site.
+- The site must offer the 43º Congresso Espírita de Goiás dates as a downloadable `.ics` calendar invitation compatible with computers and iPhone.
 
 When the user requests a durable behavior change, record it here or in the relevant child AGENTS.md
 

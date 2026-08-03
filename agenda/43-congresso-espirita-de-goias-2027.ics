@@ -1,0 +1,18 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//FEEGO//43 Congresso Espirita de Goias//PT-BR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:43º Congresso Espírita de Goiás
+BEGIN:VEVENT
+UID:43-congresso-espirita-de-goias-2027@congresso.feego.org.br
+DTSTAMP:20260803T000000Z
+DTSTART;VALUE=DATE:20270206
+DTEND;VALUE=DATE:20270209
+SUMMARY:43º Congresso Espírita de Goiás
+DESCRIPTION:O Cristo vive em mim.
+LOCATION:Goiânia - GO\, Brasil
+URL:https://congresso.feego.org.br/
+STATUS:CONFIRMED
+END:VEVENT
+END:VCALENDAR

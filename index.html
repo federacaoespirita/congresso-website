@@ -124,6 +124,9 @@
       <symbol id="icon-expand" viewBox="0 0 24 24">
         <path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5" fill="none" stroke="currentColor" stroke-width="1.6"/>
       </symbol>
+      <symbol id="icon-calendar" viewBox="0 0 24 24">
+        <path d="M7 2v4M17 2v4M4 9h16M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z" fill="none" stroke="currentColor" stroke-linecap="square" stroke-width="1.8"/>
+      </symbol>
       <symbol id="icon-facebook" viewBox="0 0 24 24">
         <path d="M22 12.1C22 6.5 17.5 2 12 2S2 6.5 2 12.1c0 5 3.7 9.2 8.4 9.9v-7H7.9v-2.9h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6v1.9h2.8l-.4 2.9h-2.4v7c4.8-.8 8.5-4.9 8.5-9.9z"/>
       </symbol>
@@ -224,7 +227,7 @@
         </button>
 
         <nav class="main-menu" id="main-menu" aria-label="Navegação principal">
-          <a href="#tema">Tema</a>
+          <a href="#agenda">Datas</a>
           <a href="#palestrantes">Palestrantes</a>
           <a href="#memoria">Memória</a>
           <a href="#informacoes">Informações</a>
@@ -295,45 +298,54 @@
           </div>
         </section>
 
-        <section class="manifesto section-pad" id="tema">
-          <div class="section-heading" data-reveal>
-            <p class="kicker">O tema</p>
-            <h2>Do conhecimento à vivência.</h2>
+        <section class="event-date section-pad" id="agenda" aria-labelledby="agenda-title">
+          <div class="section-heading event-date__heading" data-reveal>
+            <p class="kicker">Programe-se</p>
+            <h2 id="agenda-title">O próximo congresso já tem data.</h2>
           </div>
 
-          <div class="manifesto__body">
-            <p class="manifesto__statement" data-reveal>
-              A transformação começa quando a mensagem do Cristo encontra
-              morada em nós e ganha forma no cotidiano.
+          <div class="event-date__content">
+            <p class="event-date__lead" data-reveal>
+              06, 07 e 08 de fevereiro de 2027.
             </p>
-            <p data-reveal>
-              A 43ª edição propõe um movimento íntimo e concreto: estudar para
-              compreender, conviver para acolher e servir para transformar.
+            <p class="event-date__copy" data-reveal>
+              Reserve estes três dias para viver o 43º Congresso Espírita de Goiás,
+              em Goiânia.
             </p>
 
-            <ol class="principles">
-              <li data-reveal>
-                <span>01</span>
-                <div>
-                  <h3>Estudar</h3>
-                  <p>Aprofundar a razão sem perder a sensibilidade.</p>
-                </div>
-              </li>
-              <li data-reveal>
-                <span>02</span>
-                <div>
-                  <h3>Conviver</h3>
-                  <p>Reconhecer no outro uma oportunidade de encontro.</p>
-                </div>
-              </li>
-              <li data-reveal>
-                <span>03</span>
-                <div>
-                  <h3>Servir</h3>
-                  <p>Traduzir a fé em presença, cuidado e ação.</p>
-                </div>
-              </li>
-            </ol>
+            <div class="event-date__calendar" data-reveal>
+              <div class="event-date__calendar-heading">
+                <span>Fevereiro</span>
+                <strong>2027</strong>
+              </div>
+              <ol class="event-date__days" aria-label="Datas do 43º Congresso Espírita de Goiás">
+                <li>
+                  <span>Sábado</span>
+                  <strong>06</strong>
+                </li>
+                <li>
+                  <span>Domingo</span>
+                  <strong>07</strong>
+                </li>
+                <li>
+                  <span>Segunda</span>
+                  <strong>08</strong>
+                </li>
+              </ol>
+            </div>
+
+            <a
+              class="button button--calendar"
+              href="agenda/43-congresso-espirita-de-goias-2027.ics"
+              download="43-congresso-espirita-de-goias-2027.ics"
+              type="text/calendar"
+            >
+              Salvar na agenda
+              <svg aria-hidden="true"><use href="#icon-calendar"></use></svg>
+            </a>
+            <p class="event-date__note" data-reveal>
+              Baixe o convite e abra-o no calendário do seu computador ou iPhone.
+            </p>
           </div>
         </section>
 
