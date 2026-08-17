@@ -16,12 +16,29 @@ const topbar = document.querySelector(".topbar");
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const saveData = navigator.connection?.saveData === true;
 const introScrollKeys = new Set(["ArrowDown", "PageDown", "End", " "]);
+const introSeenStorageKey = "feego-congresso-intro-seen-v1";
 
-const scrollToMainMenu = () => {
+const readIntroSeen = () => {
+  try {
+    return window.localStorage.getItem(introSeenStorageKey) === "true";
+  } catch {
+    return false;
+  }
+};
+
+const storeIntroSeen = () => {
+  try {
+    window.localStorage.setItem(introSeenStorageKey, "true");
+  } catch {
+    // The opening remains available when browser storage is unavailable.
+  }
+};
+
+const scrollToMainMenu = ({ immediate = false } = {}) => {
   const target = topbar || content;
 
   target?.scrollIntoView({
-    behavior: reducedMotion.matches ? "auto" : "smooth",
+    behavior: immediate || reducedMotion.matches ? "instant" : "smooth",
     block: "start",
     inline: "nearest"
   });
@@ -95,6 +112,7 @@ if (heroSealVideo) {
 }
 
 if (film && canvas && context) {
+  const introWasSeen = readIntroSeen();
   const frameCount = Number(film.dataset.frameCount) || 234;
   const frameStart = Number(film.dataset.frameStart) || 0;
   const frameRate = Number(film.dataset.frameRate) || 24;
@@ -491,6 +509,7 @@ if (film && canvas && context) {
 
         window.scrollTo({ top: targetScrollY, behavior: "auto" });
         renderFilm(1, frameCount - 1);
+        storeIntroSeen();
         autoplayAnimationFrame = 0;
         isIntroAutoplaying = false;
         document.documentElement.classList.remove("is-intro-autoplaying");
@@ -508,7 +527,7 @@ if (film && canvas && context) {
       return () => {};
     }
 
-    let phase = "armed";
+    let phase = introWasSeen ? "finished" : "armed";
     let touchStartY = null;
 
     const isAtIntroStart = () => {
@@ -619,6 +638,12 @@ if (film && canvas && context) {
   };
 
   detachIntroAutoplay = setupIntroAutoplay();
+
+  if (introWasSeen) {
+    requestAnimationFrame(() => {
+      scrollToMainMenu({ immediate: true });
+    });
+  }
 
   decodeFrame(0)
     .then(() => {
