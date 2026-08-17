@@ -811,13 +811,15 @@ button {
 }
 
 .speaker-list {
+  --speaker-column-gap: clamp(20px, 2.8vw, 44px);
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
-  gap: clamp(38px, 5vw, 78px) clamp(20px, 2.8vw, 44px);
+  gap: clamp(38px, 5vw, 78px) var(--speaker-column-gap);
+  container-type: inline-size;
 }
 
 .speaker {
-  grid-column: span 3;
+  grid-column: span 4;
 }
 
 .speaker--offset {
@@ -830,6 +832,13 @@ button {
   margin: 0;
   overflow: hidden;
   background: var(--blue);
+}
+
+@media (min-width: 1041px) {
+  .speaker figure {
+    width: 100%;
+    height: calc((100cqw - (3 * var(--speaker-column-gap))) * 0.35);
+  }
 }
 
 .speaker figure::after {

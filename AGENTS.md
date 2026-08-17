@@ -79,6 +79,7 @@ Default section order:
 - GitHub Pages must exclude `AGENTS.md` files at the repository root and in all nested directories from the published site.
 - The site must offer the 43º Congresso Espírita de Goiás dates as a downloadable `.ics` calendar invitation compatible with computers and iPhone.
 - On each first downward scroll attempt after reaching the top, the opening frame sequence must play linearly at 24 fps, keep the original closing visual from the reference animation (the video fades to white and the closing mark and title remain visible), then restore manual scrolling; rearm the automatic sequence whenever the user returns to the top and respect reduced-motion preferences.
+- On desktop, the participant list must show three cards per row while preserving the previous image height; mobile retains its existing horizontal list behavior.
 
 When the user requests a durable behavior change, record it here or in the relevant child AGENTS.md
 
