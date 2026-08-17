@@ -12,13 +12,28 @@ const canvas = document.querySelector("#film-canvas");
 const context = canvas?.getContext("2d", { alpha: false });
 const skipIntro = document.querySelector("#skip-intro");
 const content = document.querySelector("#conteudo");
+const topbar = document.querySelector(".topbar");
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const saveData = navigator.connection?.saveData === true;
+const introScrollKeys = new Set(["ArrowDown", "PageDown", "End", " "]);
+
+const scrollToMainMenu = () => {
+  const target = topbar || content;
+
+  target?.scrollIntoView({
+    behavior: reducedMotion.matches ? "auto" : "smooth",
+    block: "start",
+    inline: "nearest"
+  });
+};
+
+let detachIntroAutoplay = () => {};
+let cancelIntroAutoplay = () => {};
 
 const heroSealVideo = document.querySelector(".landing-hero__seal-video");
 
 if (heroSealVideo) {
-  const restartDelay = Number(heroSealVideo.dataset.restartDelay) || 5000;
+  const restartDelay = Number(heroSealVideo.dataset.restartDelay) || 2000;
   let restartTimer;
 
   const clearRestartTimer = () => {
@@ -82,6 +97,10 @@ if (heroSealVideo) {
 if (film && canvas && context) {
   const frameCount = Number(film.dataset.frameCount) || 234;
   const frameStart = Number(film.dataset.frameStart) || 0;
+  const frameRate = Number(film.dataset.frameRate) || 24;
+  const frameDuration = 1000 / frameRate;
+  const playbackDuration = frameCount * frameDuration;
+  const autoplayLookahead = Math.min(frameCount - 1, saveData ? 5 : 12);
   const frameBlobs = new Array(frameCount);
   const fetchPromises = new Array(frameCount);
   const decodePromises = new Array(frameCount);
@@ -90,6 +109,10 @@ if (film && canvas && context) {
   let loadedCount = 0;
   let currentFrame = 0;
   let updateQueued = false;
+  let isIntroAutoplaying = false;
+  let autoplayAnimationFrame = 0;
+  let autoplayRunID = 0;
+  let resolveAutoplay;
 
   const frameSource = (index) =>
     `imagens/intro-frames/frame-${String(index + frameStart).padStart(3, "0")}.webp`;
@@ -310,21 +333,16 @@ if (film && canvas && context) {
     }
   };
 
-  const updateFilm = () => {
-    updateQueued = false;
+  const renderFilm = (progress, targetFrame) => {
+    const nextFrame = clamp(Math.round(targetFrame), 0, frameCount - 1);
+    const frameChanged = nextFrame !== currentFrame;
 
-    if (reducedMotion.matches) {
-      return;
-    }
-
-    const rect = film.getBoundingClientRect();
-    const scrollableDistance = Math.max(1, film.offsetHeight - window.innerHeight);
-    const progress = clamp(-rect.top / scrollableDistance);
-    const targetFrame = Math.round(progress * (frameCount - 1));
-
-    currentFrame = targetFrame;
+    currentFrame = nextFrame;
     drawFrame(currentFrame);
-    prioritizeFrameWindow(currentFrame);
+
+    if (frameChanged) {
+      prioritizeFrameWindow(currentFrame);
+    }
 
     const introOpacity = 1 - smoothstep(0.1, 0.36, progress);
     const cueOpacity = 1 - smoothstep(0.02, 0.18, progress);
@@ -337,6 +355,21 @@ if (film && canvas && context) {
     film.style.setProperty("--film-reveal-opacity", revealOpacity.toFixed(3));
     film.style.setProperty("--film-canvas-opacity", canvasOpacity.toFixed(3));
     film.style.setProperty("--film-chrome-opacity", chromeOpacity.toFixed(3));
+  };
+
+  const updateFilm = () => {
+    updateQueued = false;
+
+    if (reducedMotion.matches || isIntroAutoplaying) {
+      return;
+    }
+
+    const rect = film.getBoundingClientRect();
+    const scrollableDistance = Math.max(1, film.offsetHeight - window.innerHeight);
+    const progress = clamp(-rect.top / scrollableDistance);
+    const targetFrame = Math.round(progress * (frameCount - 1));
+
+    renderFilm(progress, targetFrame);
   };
 
   const requestFilmUpdate = () => {
@@ -371,6 +404,222 @@ if (film && canvas && context) {
     }
   };
 
+  const preloadAutoplayWindow = (startFrame) => {
+    const lastFrame = Math.min(frameCount - 1, startFrame + autoplayLookahead);
+    const requests = [];
+
+    for (let index = startFrame; index <= lastFrame; index += 1) {
+      requests.push(decodeFrame(index).catch(() => null));
+    }
+
+    return Promise.all(requests);
+  };
+
+  const initialAutoplayBuffer = preloadAutoplayWindow(0).then(() => {
+    film.classList.add("has-buffer");
+  });
+
+  const stopIntroAutoplay = () => {
+    autoplayRunID += 1;
+    cancelAnimationFrame(autoplayAnimationFrame);
+    autoplayAnimationFrame = 0;
+    isIntroAutoplaying = false;
+    document.documentElement.classList.remove("is-intro-autoplaying");
+
+    const settleAutoplay = resolveAutoplay;
+    resolveAutoplay = undefined;
+    settleAutoplay?.();
+    requestFilmUpdate();
+  };
+
+  cancelIntroAutoplay = stopIntroAutoplay;
+
+  const playIntroAtFrameRate = async () => {
+    const runID = autoplayRunID + 1;
+    autoplayRunID = runID;
+    isIntroAutoplaying = true;
+    document.documentElement.classList.add("is-intro-autoplaying");
+
+    await Promise.all([initialAutoplayBuffer, preloadAutoplayWindow(0)]);
+
+    if (runID !== autoplayRunID || reducedMotion.matches) {
+      if (runID === autoplayRunID) {
+        stopIntroAutoplay();
+      }
+
+      return;
+    }
+
+    renderFilm(0, 0);
+
+    const startScrollY = window.scrollY;
+    const filmStartScrollY = startScrollY + film.getBoundingClientRect().top;
+    const targetScrollY = filmStartScrollY + Math.max(0, film.offsetHeight - window.innerHeight);
+    const scrollDistance = targetScrollY - startScrollY;
+
+    return new Promise((resolve) => {
+      let playbackStart;
+      let previousFrame = -1;
+      resolveAutoplay = resolve;
+
+      const playFrame = (timestamp) => {
+        if (runID !== autoplayRunID) {
+          return;
+        }
+
+        playbackStart ??= timestamp;
+
+        const elapsed = timestamp - playbackStart;
+        const progress = clamp(elapsed / playbackDuration);
+        const targetFrame = Math.min(frameCount - 1, Math.floor(elapsed / frameDuration));
+
+        if (targetFrame !== previousFrame) {
+          previousFrame = targetFrame;
+          preloadAutoplayWindow(targetFrame);
+        }
+
+        window.scrollTo({
+          top: startScrollY + scrollDistance * progress,
+          behavior: "auto"
+        });
+        renderFilm(progress, targetFrame);
+
+        if (progress < 1) {
+          autoplayAnimationFrame = requestAnimationFrame(playFrame);
+          return;
+        }
+
+        window.scrollTo({ top: targetScrollY, behavior: "auto" });
+        renderFilm(1, frameCount - 1);
+        autoplayAnimationFrame = 0;
+        isIntroAutoplaying = false;
+        document.documentElement.classList.remove("is-intro-autoplaying");
+        resolveAutoplay = undefined;
+        resolve();
+        requestFilmUpdate();
+      };
+
+      autoplayAnimationFrame = requestAnimationFrame(playFrame);
+    });
+  };
+
+  const setupIntroAutoplay = () => {
+    if (!content || reducedMotion.matches) {
+      return () => {};
+    }
+
+    let phase = "armed";
+    let touchStartY = null;
+
+    const isAtIntroStart = () => {
+      const rect = film.getBoundingClientRect();
+
+      return window.scrollY <= 4 && rect.top >= -4 && rect.bottom > window.innerHeight;
+    };
+
+    const preventScroll = (event) => {
+      if (event.cancelable) {
+        event.preventDefault();
+      }
+    };
+
+    const cleanup = () => {
+      window.removeEventListener("wheel", handleWheel);
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchmove", handleTouchMove);
+      window.removeEventListener("keydown", handleKeydown);
+      window.removeEventListener("scroll", handleScroll);
+    };
+
+    const begin = (event) => {
+      if (phase !== "armed" || !isAtIntroStart()) {
+        return;
+      }
+
+      phase = "playing";
+      preventScroll(event);
+
+      playIntroAtFrameRate().finally(() => {
+        phase = "finished";
+      });
+    };
+
+    const handleWheel = (event) => {
+      if (phase === "playing" && event.deltaY !== 0) {
+        preventScroll(event);
+        return;
+      }
+
+      if (event.deltaY > 0) {
+        begin(event);
+      }
+    };
+
+    const handleTouchStart = (event) => {
+      touchStartY = event.touches[0]?.clientY ?? null;
+    };
+
+    const handleTouchMove = (event) => {
+      if (phase === "playing") {
+        preventScroll(event);
+        return;
+      }
+
+      const currentY = event.touches[0]?.clientY;
+
+      if (touchStartY === null || currentY === undefined || touchStartY - currentY < 10) {
+        return;
+      }
+
+      begin(event);
+    };
+
+    const handleKeydown = (event) => {
+      if (phase === "playing" && event.key === "Escape") {
+        preventScroll(event);
+        phase = "finished";
+        stopIntroAutoplay();
+        return;
+      }
+
+      const activeElement = document.activeElement;
+      const isTextEntry =
+        activeElement?.matches("input, textarea, select, [contenteditable='true']") ||
+        (event.key === " " && activeElement?.matches("button, a"));
+
+      if (!introScrollKeys.has(event.key) || isTextEntry) {
+        return;
+      }
+
+      if (phase === "playing") {
+        preventScroll(event);
+        return;
+      }
+
+      begin(event);
+    };
+
+    const handleScroll = () => {
+      if (phase !== "finished" || !isAtIntroStart()) {
+        return;
+      }
+
+      phase = "armed";
+      preloadAutoplayWindow(0);
+      requestFilmUpdate();
+    };
+
+    window.addEventListener("wheel", handleWheel, { passive: false });
+    window.addEventListener("touchstart", handleTouchStart, { passive: true });
+    window.addEventListener("touchmove", handleTouchMove, { passive: false });
+    window.addEventListener("keydown", handleKeydown);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return cleanup;
+  };
+
+  detachIntroAutoplay = setupIntroAutoplay();
+
   decodeFrame(0)
     .then(() => {
       resizeCanvas();
@@ -389,15 +638,29 @@ if (film && canvas && context) {
     requestFilmUpdate();
   });
 
-  reducedMotion.addEventListener?.("change", requestFilmUpdate);
+  reducedMotion.addEventListener?.("change", () => {
+    if (reducedMotion.matches) {
+      if (isIntroAutoplaying) {
+        stopIntroAutoplay();
+        scrollToMainMenu();
+      }
+
+      detachIntroAutoplay();
+    }
+
+    requestFilmUpdate();
+  });
 
   window.addEventListener("pagehide", () => {
+    detachIntroAutoplay();
+    stopIntroAutoplay();
     decodedFrames.forEach((resource) => resource.release?.());
     decodedFrames.clear();
   });
 
   skipIntro?.addEventListener("click", () => {
-    content?.scrollIntoView({ behavior: reducedMotion.matches ? "auto" : "smooth" });
+    cancelIntroAutoplay();
+    scrollToMainMenu();
   });
 }
 
