@@ -2,3 +2,7 @@ exclude:
   - branding
   - AGENTS.md
   - "**/AGENTS.md"
+  - package.json
+  - package-lock.json
+  - dev-server.mjs
+  - node_modules

@@ -1,4 +1,5 @@
 .DS_Store
 .codex-assets/
+node_modules/
 *.tmp
 *.log
