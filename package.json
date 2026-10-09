@@ -1,0 +1,21 @@
+{
+  "name": "congresso-espirita-goias",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Website oficial do 43º Congresso Espírita de Goiás (2027) - FEEGO",
+  "scripts": {
+    "dev": "node dev-server.mjs",
+    "start": "node dev-server.mjs",
+    "preview": "node dev-server.mjs"
+  },
+  "keywords": [
+    "congresso-espirita",
+    "feego",
+    "goiania",
+    "congressinho",
+    "cjovem"
+  ],
+  "author": "FEEGO",
+  "license": "ISC"
+}
