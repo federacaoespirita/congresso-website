@@ -80,14 +80,10 @@ Default section order:
 - The site must offer the 43º Congresso Espírita de Goiás dates as a downloadable `.ics` calendar invitation compatible with computers and iPhone.
 - On each first downward scroll attempt after reaching the top, the opening frame sequence must play linearly at 24 fps, keep the original closing visual from the reference animation (the video fades to white and the closing mark and title remain visible), then restore manual scrolling; after a completed viewing, later visits must begin at the main menu, while returning manually to the top rearms the sequence; respect reduced-motion preferences.
 - On desktop, the participant list must show three cards per row while preserving the previous image height; mobile retains its existing horizontal list behavior.
-- The hero section must feature dedicated navigation buttons for Congressinho Espírita (child-friendly aesthetic) and #CJovem27 (compass badge identity).
-- The website and Congressinho page must present the Universal Symbol of Accessibility in alignment with the FEB inclusive perspective.
-- The Congressinho page (`/infantil`) must clearly state the family integration concept, dates, venues (Centro de Convenções on Feb 6 and Lar Francisca de Lima on Feb 7-8), the parent-led transportation requirement for the closing presentation, the 4 brand symbols, and parent guidance.
-- Local preview is supported via `node dev-server.mjs` / `npm run dev` with clean URLs and live-reload.
 
 When the user requests a durable behavior change, record it here or in the relevant child AGENTS.md
 
 ## Child DOX Index
 
-- `infantil/AGENTS.md`: Owns the Congressinho Espírita children's subpage (`/infantil`).
+- No child AGENTS.md files are needed for the current repository structure.
 - Root-owned files: `README.md`, `LICENSE`, `banner.jpg`, `video-thumbnail.jpg`, and root-level project documentation.
