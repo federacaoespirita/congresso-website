@@ -7,7 +7,7 @@
 ## Ownership
 
 - Owned files: `infantil/index.html`, `infantil/styles.css`.
-- Shared assets: `imagens/logomarca-congressinho-espirita.jpg`, `imagens/logomarca-congressinho-espirita.webp`, `imagens/simbolo-acessibilidade-badge.png`.
+- Shared assets: `imagens/logomarca-congressinho-espirita.jpg`, `imagens/logomarca-congressinho-espirita.webp`, `imagens/simbolo-acessibilidade-badge.png`, `imagens/simbolo-encontro.svg` (and `.png`), `imagens/simbolo-semente.svg` (and `.png`), `imagens/simbolo-caminho.svg` (and `.png`), `imagens/simbolo-florescimento.svg` (and `.png`).
 
 ## Local Contracts
 
@@ -19,7 +19,7 @@
   - 07 e 08/02/2027, domingo e segunda-feira: Atividades no Lar Francisca de Lima.
   - Segunda-feira, 08/02/2027: Apresentação Musical no Palco do Centro de Convenções (o traslado é responsabilidade dos pais).
   - Detailed schedules announced opportunely.
-- Incorporates the 4 brand symbols: A Semente, O Caminho, O Coração, A Árvore.
+- Incorporates the 4 brand symbols from the official identity: O Encontro (coração magenta), A Semente (broto verde e terra), O Caminho (pegadas infantis em verde-petróleo) e O Florescimento (árvore com copa floral de corações do Congresso), sem emojis e com assets vetoriais/raster de alta definição.
 - Show `imagens/logomarca-congressinho-espirita` complete, without crop, frame, overlay, or caption.
 - Features the Universal Symbol of Accessibility aligned with the FEB inclusive perspective. Use `imagens/simbolo-universal-acessibilidade.png` for that mark. Do not substitute the wheelchair emoji.
 - Direct registration links to `https://evento.digital/feego/43cego`.

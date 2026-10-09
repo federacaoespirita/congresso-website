@@ -82,7 +82,7 @@ Default section order:
 - On desktop, the participant list must show three cards per row while preserving the previous image height; mobile retains its existing horizontal list behavior.
 - The hero section must feature dedicated navigation buttons for Congressinho Espírita (child-friendly aesthetic) and #CJovem27 (compass badge identity).
 - The website and Congressinho page must present the Universal Symbol of Accessibility in alignment with the FEB inclusive perspective.
-- The Congressinho page (`/infantil`) must clearly state the family integration concept, dates, venues (Centro de Convenções on Feb 6 and Lar Francisca de Lima on Feb 7-8), the parent-led transportation requirement for the closing presentation, the 4 brand symbols, and parent guidance.
+- The Congressinho page (`/infantil`) must clearly state the family integration concept, dates, venues (Centro de Convenções on Feb 6 and Lar Francisca de Lima on Feb 7-8), the parent-led transportation requirement for the closing presentation, the 4 brand symbols (O Encontro, A Semente, O Caminho e O Florescimento, usando suas representações gráficas vetor/PNG fiéis à identidade visual sem emojis), and parent guidance.
 - Local preview is supported via `node dev-server.mjs` / `npm run dev` with clean URLs and live-reload.
 
 When the user requests a durable behavior change, record it here or in the relevant child AGENTS.md

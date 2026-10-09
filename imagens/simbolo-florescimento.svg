@@ -1,0 +1,142 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Heart leaf definition -->
+    <g id="blossomHeart">
+      <path d="M 0,8 C -4,3.5 -11,-3.5 -11,-9 C -11,-15 -6.5,-18 -1,-18 C 0,-18 0,-16 0,-16 C 0,-16 0,-18 1,-18 C 6.5,-18 11,-15 11,-9 C 11,-3.5 4,3.5 0,8 Z" 
+            fill="#d33c72"/>
+    </g>
+    <!-- Circular blossoms -->
+    <circle id="dotL" cx="0" cy="0" r="8.5" fill="#d33c72"/>
+    <circle id="dotS" cx="0" cy="0" r="5.5" fill="#d33c72"/>
+  </defs>
+
+  <!-- Ground Mound / Roots -->
+  <path d="M 175 444 C 215 438, 256 441, 256 441 C 256 441, 297 438, 337 444 C 315 448, 282 450, 256 450 C 230 450, 197 448, 175 444 Z" fill="#d33c72"/>
+
+  <!-- Solid Trunk & Main Structural Limbs -->
+  <path d="
+    M 242 441 
+    C 242 385, 240 338, 236 300 
+    C 218 280, 188 255, 168 245 
+    C 164 243, 168 237, 172 239 
+    C 194 250, 224 275, 240 294 
+    C 238 260, 228 225, 210 198 
+    C 208 195, 213 192, 216 195 
+    C 232 222, 244 258, 246 286 
+    C 250 255, 253 212, 252 175 
+    C 252 170, 258 170, 258 175 
+    C 257 212, 260 255, 264 286 
+    C 266 258, 278 222, 294 195 
+    C 297 192, 302 195, 300 198 
+    C 282 225, 272 260, 270 294 
+    C 286 275, 316 250, 338 239 
+    C 342 237, 346 243, 342 245 
+    C 322 255, 292 280, 274 300 
+    C 270 338, 268 385, 268 441 
+    Z" 
+    fill="#d33c72"/>
+
+  <!-- Delicate Twigs branching off -->
+  <path d="M 230 290 C 208 268, 178 258, 148 255" fill="none" stroke="#d33c72" stroke-width="4.5" stroke-linecap="round"/>
+  <path d="M 282 290 C 304 268, 334 258, 364 255" fill="none" stroke="#d33c72" stroke-width="4.5" stroke-linecap="round"/>
+  <path d="M 218 230 C 196 208, 166 198, 140 202" fill="none" stroke="#d33c72" stroke-width="4" stroke-linecap="round"/>
+  <path d="M 294 230 C 316 208, 346 198, 372 202" fill="none" stroke="#d33c72" stroke-width="4" stroke-linecap="round"/>
+  <path d="M 244 235 C 228 205, 200 168, 172 150" fill="none" stroke="#d33c72" stroke-width="4" stroke-linecap="round"/>
+  <path d="M 268 235 C 284 205, 312 168, 340 150" fill="none" stroke="#d33c72" stroke-width="4" stroke-linecap="round"/>
+  <path d="M 251 195 C 241 160, 224 130, 204 112" fill="none" stroke="#d33c72" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="M 261 195 C 271 160, 288 130, 308 112" fill="none" stroke="#d33c72" stroke-width="3.5" stroke-linecap="round"/>
+
+  <!-- FULL ROUNDED CANOPY -->
+  <!-- Outer Perimeter of Leaves (Hearts radiating around 256, 210) -->
+  <use href="#blossomHeart" transform="translate(256, 48) scale(1.45) rotate(0)"/>
+  <use href="#blossomHeart" transform="translate(216, 55) scale(1.4) rotate(-15)"/>
+  <use href="#blossomHeart" transform="translate(296, 55) scale(1.4) rotate(15)"/>
+  <use href="#blossomHeart" transform="translate(178, 72) scale(1.35) rotate(-30)"/>
+  <use href="#blossomHeart" transform="translate(334, 72) scale(1.35) rotate(30)"/>
+  <use href="#blossomHeart" transform="translate(144, 100) scale(1.3) rotate(-45)"/>
+  <use href="#blossomHeart" transform="translate(368, 100) scale(1.3) rotate(45)"/>
+  <use href="#blossomHeart" transform="translate(116, 136) scale(1.25) rotate(-60)"/>
+  <use href="#blossomHeart" transform="translate(396, 136) scale(1.25) rotate(60)"/>
+  <use href="#blossomHeart" transform="translate(98, 180) scale(1.25) rotate(-75)"/>
+  <use href="#blossomHeart" transform="translate(414, 180) scale(1.25) rotate(75)"/>
+  <use href="#blossomHeart" transform="translate(92, 228) scale(1.2) rotate(-90)"/>
+  <use href="#blossomHeart" transform="translate(420, 228) scale(1.2) rotate(90)"/>
+  <use href="#blossomHeart" transform="translate(98, 276) scale(1.2) rotate(-105)"/>
+  <use href="#blossomHeart" transform="translate(414, 276) scale(1.2) rotate(105)"/>
+  <use href="#blossomHeart" transform="translate(116, 320) scale(1.15) rotate(-120)"/>
+  <use href="#blossomHeart" transform="translate(396, 320) scale(1.15) rotate(120)"/>
+  <use href="#blossomHeart" transform="translate(145, 356) scale(1.1) rotate(-135)"/>
+  <use href="#blossomHeart" transform="translate(367, 356) scale(1.1) rotate(135)"/>
+  <use href="#blossomHeart" transform="translate(182, 382) scale(1.05) rotate(-150)"/>
+  <use href="#blossomHeart" transform="translate(330, 382) scale(1.05) rotate(150)"/>
+
+  <!-- Mid-Canopy Hearts -->
+  <use href="#blossomHeart" transform="translate(256, 102) scale(1.35) rotate(5)"/>
+  <use href="#blossomHeart" transform="translate(220, 112) scale(1.3) rotate(-18)"/>
+  <use href="#blossomHeart" transform="translate(292, 112) scale(1.3) rotate(18)"/>
+  <use href="#blossomHeart" transform="translate(182, 130) scale(1.25) rotate(-35)"/>
+  <use href="#blossomHeart" transform="translate(330, 130) scale(1.25) rotate(35)"/>
+  <use href="#blossomHeart" transform="translate(150, 162) scale(1.25) rotate(-50)"/>
+  <use href="#blossomHeart" transform="translate(362, 162) scale(1.25) rotate(50)"/>
+  <use href="#blossomHeart" transform="translate(132, 208) scale(1.2) rotate(-70)"/>
+  <use href="#blossomHeart" transform="translate(380, 208) scale(1.2) rotate(70)"/>
+  <use href="#blossomHeart" transform="translate(130, 258) scale(1.2) rotate(-85)"/>
+  <use href="#blossomHeart" transform="translate(382, 258) scale(1.2) rotate(85)"/>
+  <use href="#blossomHeart" transform="translate(148, 306) scale(1.15) rotate(-105)"/>
+  <use href="#blossomHeart" transform="translate(364, 306) scale(1.15) rotate(105)"/>
+  <use href="#blossomHeart" transform="translate(178, 345) scale(1.1) rotate(-125)"/>
+  <use href="#blossomHeart" transform="translate(334, 345) scale(1.1) rotate(125)"/>
+
+  <!-- Inner Hearts -->
+  <use href="#blossomHeart" transform="translate(256, 148) scale(1.25) rotate(-8)"/>
+  <use href="#blossomHeart" transform="translate(222, 164) scale(1.2) rotate(-22)"/>
+  <use href="#blossomHeart" transform="translate(290, 164) scale(1.2) rotate(22)"/>
+  <use href="#blossomHeart" transform="translate(186, 194) scale(1.15) rotate(-42)"/>
+  <use href="#blossomHeart" transform="translate(326, 194) scale(1.15) rotate(42)"/>
+  <use href="#blossomHeart" transform="translate(174, 245) scale(1.15) rotate(-65)"/>
+  <use href="#blossomHeart" transform="translate(338, 245) scale(1.15) rotate(65)"/>
+  <use href="#blossomHeart" transform="translate(182, 292) scale(1.1) rotate(-85)"/>
+  <use href="#blossomHeart" transform="translate(330, 292) scale(1.1) rotate(85)"/>
+  <use href="#blossomHeart" transform="translate(214, 318) scale(1.05) rotate(-45)"/>
+  <use href="#blossomHeart" transform="translate(298, 318) scale(1.05) rotate(45)"/>
+
+  <!-- Blossom Dots Interspersed (large and small) -->
+  <use href="#dotL" transform="translate(236, 78)"/>
+  <use href="#dotL" transform="translate(276, 78)"/>
+  <use href="#dotL" transform="translate(198, 92)"/>
+  <use href="#dotL" transform="translate(314, 92)"/>
+  <use href="#dotL" transform="translate(164, 118)"/>
+  <use href="#dotL" transform="translate(348, 118)"/>
+  <use href="#dotL" transform="translate(134, 148)"/>
+  <use href="#dotL" transform="translate(378, 148)"/>
+  <use href="#dotL" transform="translate(112, 194)"/>
+  <use href="#dotL" transform="translate(400, 194)"/>
+  <use href="#dotL" transform="translate(110, 245)"/>
+  <use href="#dotL" transform="translate(402, 245)"/>
+  <use href="#dotL" transform="translate(125, 292)"/>
+  <use href="#dotL" transform="translate(387, 292)"/>
+  <use href="#dotL" transform="translate(158, 334)"/>
+  <use href="#dotL" transform="translate(354, 334)"/>
+  <use href="#dotL" transform="translate(198, 366)"/>
+  <use href="#dotL" transform="translate(314, 366)"/>
+
+  <!-- Inner Dots -->
+  <use href="#dotS" transform="translate(256, 76)"/>
+  <use href="#dotS" transform="translate(240, 126)"/>
+  <use href="#dotS" transform="translate(272, 126)"/>
+  <use href="#dotS" transform="translate(202, 148)"/>
+  <use href="#dotS" transform="translate(310, 148)"/>
+  <use href="#dotS" transform="translate(166, 174)"/>
+  <use href="#dotS" transform="translate(346, 174)"/>
+  <use href="#dotS" transform="translate(156, 218)"/>
+  <use href="#dotS" transform="translate(356, 218)"/>
+  <use href="#dotS" transform="translate(156, 268)"/>
+  <use href="#dotS" transform="translate(356, 268)"/>
+  <use href="#dotS" transform="translate(195, 266)"/>
+  <use href="#dotS" transform="translate(317, 266)"/>
+  <use href="#dotS" transform="translate(232, 230)"/>
+  <use href="#dotS" transform="translate(280, 230)"/>
+  <use href="#dotS" transform="translate(232, 185)"/>
+  <use href="#dotS" transform="translate(280, 185)"/>
+  <use href="#dotS" transform="translate(256, 204)"/>
+</svg>

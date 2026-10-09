@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Left Sole Shape -->
+    <path id="leftBabySole" d="
+      M -2, -62 
+      C 26,-62 44,-40 44,-14
+      C 44,6 30,24 20,44
+      C 15,56 16,66 22,76
+      C 26,84 24,98 12,104
+      C -2,110 -22,106 -28,90
+      C -34,74 -26,56 -18,40
+      C -12,24 -30,12 -38,-10
+      C -46,-32 -30,-62 -2,-62 Z" 
+      fill="#30868f"/>
+
+    <!-- Right Sole Shape (mirrored) -->
+    <path id="rightBabySole" d="
+      M 2, -62 
+      C -26,-62 -44,-40 -44,-14
+      C -44,6 -30,24 -20,44
+      C -15,56 -16,66 -22,76
+      C -26,84 -24,98 -12,104
+      C 2,110 22,106 28,90
+      C 34,74 26,56 18,40
+      C 12,24 30,12 38,-10
+      C 46,-32 30,-62 2,-62 Z" 
+      fill="#30868f"/>
+  </defs>
+
+  <!-- Left Footprint (slightly lower, angled outward left) -->
+  <g transform="translate(170, 275) rotate(-10) scale(1.15)">
+    <use href="#leftBabySole"/>
+    <!-- Big Toe (inner side = right side for left foot) -->
+    <ellipse cx="26" cy="-90" rx="16" ry="19" transform="rotate(-6 26 -90)" fill="#30868f"/>
+    <!-- 2nd Toe -->
+    <circle cx="2" cy="-92" r="12" fill="#30868f"/>
+    <!-- 3rd Toe -->
+    <circle cx="-18" cy="-87" r="10.5" fill="#30868f"/>
+    <!-- 4th Toe -->
+    <circle cx="-34" cy="-77" r="9" fill="#30868f"/>
+    <!-- 5th (pinky) Toe -->
+    <circle cx="-46" cy="-64" r="7.5" fill="#30868f"/>
+  </g>
+
+  <!-- Right Footprint (slightly higher, angled outward right) -->
+  <g transform="translate(342, 215) rotate(12) scale(1.15)">
+    <use href="#rightBabySole"/>
+    <!-- Big Toe (inner side = left side for right foot) -->
+    <ellipse cx="-26" cy="-90" rx="16" ry="19" transform="rotate(6 -26 -90)" fill="#30868f"/>
+    <!-- 2nd Toe -->
+    <circle cx="-2" cy="-92" r="12" fill="#30868f"/>
+    <!-- 3rd Toe -->
+    <circle cx="18" cy="-87" r="10.5" fill="#30868f"/>
+    <!-- 4th Toe -->
+    <circle cx="34" cy="-77" r="9" fill="#30868f"/>
+    <!-- 5th (pinky) Toe -->
+    <circle cx="46" cy="-64" r="7.5" fill="#30868f"/>
+  </g>
+</svg>

@@ -545,33 +545,40 @@ body.page-infantil {
 }
 
 .symbol-card__icon {
-  width: 64px;
-  height: 64px;
+  width: 72px;
+  height: 72px;
   border-radius: 50%;
   display: grid;
   place-items: center;
-  font-size: 1.8rem;
   margin-bottom: 20px;
+  transition: transform 200ms ease;
+}
+
+.symbol-card:hover .symbol-card__icon {
+  transform: scale(1.08);
+}
+
+.symbol-card__icon img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  display: block;
 }
 
 .symbol-card:nth-child(1) .symbol-card__icon {
-  background: #dcfce7;
-  color: #15803d;
+  background: #fdf2f8;
 }
 
 .symbol-card:nth-child(2) .symbol-card__icon {
-  background: #e0f2fe;
-  color: #0369a1;
+  background: #f0fdf4;
 }
 
 .symbol-card:nth-child(3) .symbol-card__icon {
-  background: #ffe4e6;
-  color: #e11d48;
+  background: #ecfeff;
 }
 
 .symbol-card:nth-child(4) .symbol-card__icon {
-  background: #fce7f3;
-  color: #be185d;
+  background: #fdf2f8;
 }
 
 .symbol-card h3 {
