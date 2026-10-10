@@ -596,6 +596,22 @@ body.page-infantil {
   margin: 0;
 }
 
+/* Footer Symbol */
+.footer__brand-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.footer__brand .footer__brand-row img.footer__brand-symbol {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #ffffff;
+  padding: 2px;
+}
+
 /* Inclusion Section */
 .kids-inclusion {
   padding: var(--section-space) var(--page-pad);
